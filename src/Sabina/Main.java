@@ -1,7 +1,5 @@
 package Sabina;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
@@ -11,11 +9,13 @@ public class Main {
     static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int myNum = rand.nextInt(100) + 1;
-        System.out.println("Expected number: " + myNum);
-
-        String answer;
         do {
+             askString("Please enter your name: ");
+            int myNum = rand.nextInt(100) + 1;
+            System.out.println("Expected number: " + myNum);
+
+            String answer;
+
 
             boolean userWon = false;
             for (int i = 0; i < 10; i++) {
@@ -41,7 +41,6 @@ public class Main {
             }
 
 
-
         } while (askYesNo("Would you like to play again? (y/n))"));
 
         System.out.println("Goodbye!");
@@ -55,7 +54,7 @@ public class Main {
                 if (answer >= min && answer <= max) {
                     return answer;
                 }
-            } catch(InputMismatchException ex) {
+            } catch (InputMismatchException ex) {
                 System.out.println("It isn't a number");
                 scan.next();
             }
@@ -78,7 +77,17 @@ public class Main {
 
         }
     }
-}
+
+    static String askString(String msg) {
+        System.out.println(msg);
+        String answer = scan.next();
+        return answer;
+
+
+    }
+
+    }
+
 
 
 
