@@ -18,8 +18,7 @@ public class Main {
 
             boolean userWon = false;
             for (int i = 0; i < 10; i++) {
-                System.out.println("Enter your guess: ");
-                int userNum = scan.nextInt();
+                int userNum = askInt("Please, enter your guess: ", 1, 100);
 
                 if (userNum == myNum) {
                     System.out.println("You won!");
@@ -38,13 +37,49 @@ public class Main {
                 System.out.println("You lost!");
 
 
-
             }
-            System.out.println("Would you like to play again? (y/n)");
-            answer = scan.next();
-        } while (answer.equals("y")) ;
+
+            answer = askYesNo("Would you like to play again? (y/n))");
+
+        } while (answer.equals("y"));
+
+        System.out.println("Goodbye!");
+    }
+
+    static int askInt(String msg, int min, int max) {
+        while (true) {
+            System.out.println(msg);
+            int answer = scan.nextInt();
+            if (answer >= min && answer <= max) {
+                return answer;
+            }
+
+            System.out.printf("Please enter your number from %d to %d\n", min, max);
+        }
+    }
+
+    static String askYesNo(String msg) {
+        while (true) {
+            System.out.println(msg);
+            String answer = scan.next();
+            if (answer.equalsIgnoreCase("y")
+                    || answer.equalsIgnoreCase("n")) {
+
+                return answer;
+            }
+            System.out.println("Enter 'y' or 'n'");
+
+        }
     }
 }
+
+
+
+
+
+
+
+
 
 
 // write your code here
