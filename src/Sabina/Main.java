@@ -2,6 +2,7 @@ package Sabina;
 
 import org.w3c.dom.ls.LSOutput;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -39,33 +40,39 @@ public class Main {
 
             }
 
-            answer = askYesNo("Would you like to play again? (y/n))");
 
-        } while (answer.equals("y"));
+
+        } while (askYesNo("Would you like to play again? (y/n))"));
 
         System.out.println("Goodbye!");
     }
 
     static int askInt(String msg, int min, int max) {
         while (true) {
-            System.out.println(msg);
-            int answer = scan.nextInt();
-            if (answer >= min && answer <= max) {
-                return answer;
+            try {
+                System.out.println(msg);
+                int answer = scan.nextInt();
+                if (answer >= min && answer <= max) {
+                    return answer;
+                }
+            } catch(InputMismatchException ex) {
+                System.out.println("It isn't a number");
+                scan.next();
             }
+
 
             System.out.printf("Please enter your number from %d to %d\n", min, max);
         }
     }
 
-    static String askYesNo(String msg) {
+    static boolean askYesNo(String msg) {
         while (true) {
             System.out.println(msg);
             String answer = scan.next();
-            if (answer.equalsIgnoreCase("y")
-                    || answer.equalsIgnoreCase("n")) {
-
-                return answer;
+            boolean isY = answer.equalsIgnoreCase("y");
+            boolean isN = answer.equalsIgnoreCase("n");
+            if (isY || isN) {
+                return isY;
             }
             System.out.println("Enter 'y' or 'n'");
 
