@@ -1,5 +1,6 @@
 package Sabina;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -105,10 +106,11 @@ public class Main {
                                 .comparingInt(GameResult::getTriesCount)
                                 .thenComparing(GameResult::getTime))
                         .limit(5)
-                        .forEach(r -> System.out.printf("%s \t\t\t %d \t\t\t %d\n",
+                        .forEach(r -> System.out.format("%14s%10d%10d\n", r.getName(), r.getTriesCount(), r.getTime()));
+                        /*System.out.printf("%s \t\t\t %d \t\t\t %d\n",
                                 r.getName(),
                                 r.getTriesCount(),
-                                r.getTime() / 1000));
+                                r.getTime() / 1000)); */
 
 
 
